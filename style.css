@@ -1,5 +1,5 @@
 /* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Old+Standard+TT&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Old+Standard+TT:ital@0;1&display=swap');
 
 /* custom properties */
 :root {
@@ -110,15 +110,15 @@ svg {
     color: var(--blue);
 }
 
-.beer:checked + svg,
-.beer:hover,
-.beer:focus {
+.beer-svg:checked + svg,
+.beer-svg:hover,
+.beer-svg:focus {
     fill: var(--orange);
 }
 
-.hops:checked + svg,
-.hops:hover,
-.hops:focus {
+.hops-svg:checked + svg,
+.hops-svg:hover,
+.hops-svg:focus {
     fill: var(--green);
 }
 
@@ -178,4 +178,54 @@ svg {
 .beer-info {
     display: flex;
     justify-content: space-between;
+}
+
+.beer-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1.5em;
+    /* Since .beer-content is a hover overlay with position: absolute if width & height are 100% 
+    it'll be far too big. Hence using calc(100% - left&right padding) gets it exact */
+    width: calc(100% - (1.5em * 2));
+    height: calc(100% - (1.5em * 2));
+    background: white;
+    /* ensures that when content doesn't fit card a scrollbar appears on the right */
+    overflow: auto;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.8s ease-in;
+}
+
+.beer-content:hover,
+.beer-content:focus {
+    opacity: 0.9;
+}
+
+.beer-name {
+    margin: 0 auto 0.5em;
+    font-size: 2.4rem;
+    font-family: 'Old Standard TT', serif;
+    font-weight: lighter;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.beer-tagline {
+    font-family: 'Old Standard TT', serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 0.5em;
+    border-bottom: solid 2px var(--blue);
+}
+
+.beer-description,
+.beer-pairings {
+    margin: 1em 0;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.beer-pairings {
+    font-style: italic;
 }
