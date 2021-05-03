@@ -38,3 +38,112 @@ header {
 .container {
     padding: 1em 2em;
 }
+
+/* filters */
+.card {
+    display: flex;
+    background: #fff;
+    box-shadow: var(--shadow);
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.filter-card {
+    padding: .8em;
+}
+
+.filter-container {
+    padding: .4em .8em;
+}
+
+.filter-text {
+    color: var(--black);
+    font-size: 1.3rem;
+    padding: .3em;
+}
+
+.filter {
+    background: var(--black);
+    padding: .2em .2em .1em .2em;
+    border: 4px solid var(--blue);
+    border-radius: 2em;
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.filter-all-text {
+    font-size: 2rem;
+    padding: .25em .5em;
+    color: var(--off-white);
+}
+
+svg {
+    fill: var(--off-white);
+    height: 2rem;
+    width: 2rem;
+    margin: .5em .3em;
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.filter-all-text,
+svg {
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.filter-all:checked + span,
+.filter-all-text:hover,
+.filter-all-text:focus {
+    color: var(--blue);
+}
+
+.beer:checked + svg,
+.beer:hover,
+.beer:focus {
+    fill: var(--orange);
+}
+
+.hops:checked + svg,
+.hops:hover,
+.hops:focus {
+    fill: var(--green);
+}
+
+/* page buttons */
+.page-btn {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 2rem;
+    padding: .24em .4em;
+    color: var(--off-white);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.page-btn svg {
+    margin: 0;
+}
+
+.page-btn:hover,
+.page-btn:focus {
+    color: var(--blue);
+}
+
+.page-btn:disabled {
+    cursor: default;
+    color: var(--disabled);
+}
