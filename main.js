@@ -1,13 +1,17 @@
 // variables
-const urlBase = "https://api.punkapi.com/v2/beers";
+const urlBase = "https://api.punkapi.com/v2/beers?per_page=12";
 const filterABV = document.getElementById('filterABV')
-let optionsABV = ""
-let optionsIBU = ""
+const filterIBU = document.getElementById('filterIBU')
+const pageNumber = document.getElementById('pageNumber')
+const prevPage = document.getElementById('prevPage')
+const nextPage = document.getElementById('nextPage')
+let optionsABV = "", optionsIBU = "", page = 1
+
 
 // filters
 filterABV.addEventListener("change", e => {
     const value = e.target.value
-
+    page = 1
     switch (value) {
         case "all":
             optionsABV = ""
@@ -30,16 +34,16 @@ abv_lt=4.6 Returns all beers with ABV less than 4.6 */
 
 filterIBU.addEventListener("change", e => {
     const value = e.target.value
-
+    page = 1
     switch (value) {
         case "all":
             optionsIBU = ""
             break;
         case "weak":
-            optionsIBU = "ibu_lt=41"
+            optionsIBU = "ibu_lt=35"
             break;
         case "medium":
-            optionsIBU = "ibu_gt=40&ibu_lt=75"
+            optionsIBU = "ibu_gt=34&ibu_lt=75"
             break;
         case "strong":
             optionsIBU = "ibu_gt=74"
@@ -49,11 +53,26 @@ filterIBU.addEventListener("change", e => {
 })
 
 async function getBeers() {
-    const url = `${urlBase}?${optionsABV}&${optionsIBU}`
+    const url = `${urlBase}&page=${page}&${optionsABV}&${optionsIBU}`
     console.log(url)
     // fetch
     const beerPromise = await fetch(url)
     const beers = await beerPromise.json()
+
+    // pagination
+    pageNumber.textContent = page
+
+    if (page === 1) {
+        prevPage.disabled = true
+    } else {
+        prevPage.disabled = false
+    }
+
+    if (beers.length < 12) {
+        nextPage.disabled = true
+    } else {
+        nextPage.disabled = false
+    }
     
     // render data
     const beersDiv = document.querySelector('.beers')
@@ -83,4 +102,16 @@ async function getBeers() {
     beersDiv.innerHTML = beerHtml
 }
 
+// pagination
+prevPage.addEventListener('click', () => {
+    page--
+    getBeers()
+})
+
+nextPage.addEventListener('click', () => {
+    page++
+    getBeers()
+})
+
+// initial get
 getBeers()

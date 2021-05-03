@@ -44,6 +44,7 @@ header {
     display: flex;
     background: #fff;
     box-shadow: var(--shadow);
+    border-radius: .3em;
 }
 
 .filters {
