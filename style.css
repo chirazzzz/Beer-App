@@ -147,3 +147,35 @@ svg {
     cursor: default;
     color: var(--disabled);
 }
+
+/* beer styles */
+.beers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1em;
+}
+
+.beer-wrapper {
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+}
+
+.beer {
+    display: grid;
+    grid-auto-columns: 1fr;
+    align-items: end;
+    text-align: center;
+    padding: 1em;
+    width: 100%;
+}
+
+.beer-img {
+    margin: auto;
+    height: 20em;
+}
+
+.beer-info {
+    display: flex;
+    justify-content: space-between;
+}
