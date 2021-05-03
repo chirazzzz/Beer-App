@@ -110,15 +110,15 @@ svg {
     color: var(--blue);
 }
 
-.beer-svg:checked + svg,
 .beer-svg:hover,
+.beer-svg:checked + svg,
 .beer-svg:focus {
     fill: var(--orange);
 }
 
-.hops-svg:checked + svg,
-.hops-svg:hover,
-.hops-svg:focus {
+.hops:hover,
+.hops:checked + svg,
+.hops:focus + svg {
     fill: var(--green);
 }
 
